@@ -95,10 +95,31 @@ public class OrderRepository {
                 "select o from Order o" +
                         " join fetch o.member m" +
                         " join fetch o.delivery d", Order.class)
+                .setFirstResult(1)
+                .setMaxResults(100)
                 .getResultList();
     }
 
 
+    //OneToMany(컬렉션)에서는 fetch join 하면 페이징 불가
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class
+        ).getResultList();
+    }
 
+    public List<Order> findAllWithMemberDelivery(int offset, int limit) {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class)
+                .setFirstResult(offset)
+                .setMaxResults(limit)
+                .getResultList();
 
+    }
 }
