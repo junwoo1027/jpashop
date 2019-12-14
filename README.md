@@ -26,7 +26,7 @@
 ![memlist](./image/memlist.PNG)
 
 ### 상품 등록
-![item](./image/item.PNG)
+![itemr](./image/itemr.PNG)
 
 ### 상품 목록 조회
 ![itemlist](./image/itemlist.PNG)
